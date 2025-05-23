@@ -1,6 +1,6 @@
 <?php
 $host = getenv('DB_HOST') ?: 'localhost';
-$dbname = getenv('DB_NAME') ?: 'miniloc';
+$dbname = getenv('DB_NAME') ?: 'miniloc2';  // Changé en miniloc2
 $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: '';
 
