@@ -1,5 +1,18 @@
 <?php
-include '../BD/connexion.php';
+require_once __DIR__ . '/../BD/connexion.php';
+
+function getNotificationsUtilisateur($user_id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM notification WHERE user_id = ? ORDER BY date_creation DESC");
+    $stmt->execute([$user_id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function marquerNotificationCommeLue($notification_id) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE notification SET lu = 1 WHERE id = ?");
+    return $stmt->execute([$notification_id]);
+}
 
 // Fonction pour créer une notification
 function creerNotification($utilisateur_id, $contenu, $contenu_email, $sujet_email, $annonce_id = null) {
@@ -105,4 +118,4 @@ function notifierClientsNouvelleAnnonce($annonce_id) {
         return false;
     }
 }
-?> 
+?>

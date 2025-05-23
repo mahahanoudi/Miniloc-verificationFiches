@@ -1,13 +1,13 @@
 <?php
 session_start();
-include '../BD/connexion.php';
-include '../Traitement/objetTraitement.php';
-include '../Traitement/annonceTraitement.php';
-include '../Traitement/notificationTraitement.php';
+require_once __DIR__ . '/../BD/connexion.php';
+require_once __DIR__ . '/../Traitement/objetTraitement.php';
+require_once __DIR__ . '/../Traitement/annonceTraitement.php';
+require_once __DIR__ . '/../Traitement/notificationTraitement.php';
 
 // Vérifier si l'utilisateur est connecté et est un partenaire
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'proprietaire') {
-    header('Location: ../index.php');
+    header('Location: /IHM/index.php');
     exit();
 }
 
@@ -23,7 +23,9 @@ $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 $user_name = $user ? $user['nom'] : 'Partenaire';
 ?>
-
+<?php
+require_once __DIR__ . '/../Traitement/traitement_espace_partenaire.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -119,7 +121,7 @@ $user_name = $user ? $user['nom'] : 'Partenaire';
 </head>
 <body>
     <!-- Navbar -->
-    <?php include 'navbar.php'?>
+    <?php include (__DIR__ . '/navbar.php'); ?>
 
     <!-- Main Content -->
     <div class="container">
@@ -152,21 +154,19 @@ $user_name = $user ? $user['nom'] : 'Partenaire';
         </div>
 
         <!-- Action Buttons -->
- <!-- Action Buttons -->
-<div class="row mb-4">
-    <div class="col-12">
-        <a href="form_objet.php" class="btn btn-primary me-2">
-            <i class="fas fa-plus"></i> Ajouter un Objet
-        </a>
-        <a href="form_annonce.php" class="btn btn-secondary me-2">
-            <i class="fas fa-plus"></i> Créer une Annonce
-        </a>
-        <a href="mes_annonces.php" class="btn btn-outline-dark">
-            <i class="fas fa-list"></i> Suivre vos annonces
-        </a>
-    </div>
-</div>
-
+        <div class="row mb-4">
+            <div class="col-12">
+                <a href="/IHM/form_objet.php" class="btn btn-primary me-2">
+                    <i class="fas fa-plus"></i> Ajouter un Objet
+                </a>
+                <a href="/IHM/form_annonce.php" class="btn btn-secondary me-2">
+                    <i class="fas fa-plus"></i> Créer une Annonce
+                </a>
+                <a href="/IHM/mes_annonces.php" class="btn btn-outline-dark">
+                    <i class="fas fa-list"></i> Suivre vos annonces
+                </a>
+            </div>
+        </div>
 
         <!-- Objects List -->
         <div class="row">
@@ -183,7 +183,7 @@ $user_name = $user ? $user['nom'] : 'Partenaire';
                                 <div class="card h-100">
                                     <?php
                                     $images = getImagesObjet($objet['id']);
-                                    $image_url = !empty($images) ? '../uploads/' . $images[0]['url'] : '../assets/images/default.jpg';
+                                    $image_url = !empty($images) ? '/uploads/' . $images[0]['url'] : '/assets/images/default.jpg';
                                     ?>
                                     <img src="<?php echo $image_url; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($objet['nom']); ?>" style="height: 200px; object-fit: cover;">
                                     <div class="card-body">
@@ -193,10 +193,10 @@ $user_name = $user ? $user['nom'] : 'Partenaire';
                                             <strong>Prix:</strong> <?php echo number_format($objet['prix_journalier'], 2); ?> DHS/jour
                                         </p>
                                         <div class="action-buttons">
-                                            <a href="form_objet.php?id=<?php echo $objet['id']; ?>" class="btn btn-primary btn-sm">
+                                            <a href="/IHM/form_objet.php?id=<?php echo $objet['id']; ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-edit"></i> Modifier
                                             </a>
-                                            <a href="form_annonce.php?objet_id=<?php echo $objet['id']; ?>" class="btn btn-secondary btn-sm">
+                                            <a href="/IHM/form_annonce.php?objet_id=<?php echo $objet['id']; ?>" class="btn btn-secondary btn-sm">
                                                 <i class="fas fa-plus"></i> Créer Annonce
                                             </a>
                                         </div>
@@ -210,7 +210,5 @@ $user_name = $user ? $user['nom'] : 'Partenaire';
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html> 
+</html>

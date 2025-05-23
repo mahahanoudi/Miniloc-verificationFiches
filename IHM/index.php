@@ -1,8 +1,5 @@
 <?php
-session_start();
-
-include_once('../Traitement/traitement_page_acceuil.php');
-
+require_once __DIR__ . '/../Traitement/traitement_page_acceuil.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -317,7 +314,7 @@ include_once('../Traitement/traitement_page_acceuil.php');
     </style>
 </head>
 <body>
-<?php include ('navbar.php'); ?>
+<?php include (__DIR__ . '/navbar.php'); ?>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -328,20 +325,15 @@ include_once('../Traitement/traitement_page_acceuil.php');
         </div>
 
         <div class="image-container">
-            <!-- Remplacer par vos images -->
-            <div class="circle-image small-circle " style="background-image: url('../photos/IMAGE2.jpg')"></div>
-            <div class="circle-image medium-circle" style="background-image: url('../photos/IMAGE1.png')"></div>
+            <div class="circle-image small-circle " style="background-image: url('/photos/IMAGE2.jpg')"></div>
+            <div class="circle-image medium-circle" style="background-image: url('/photos/IMAGE1.png')"></div>
         </div>
     </section>
 
     <!-- Catégories -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5" style="color: var(--bleu-ciel);">Catégories populaires</h2>
-            <div class="row">
-            <div class="col-md-3 mb-4 text-center">
-           <a href="../IHM/poussettes.php?categorie=Poussettes" style="text-decoration: none; color: inherit;">
-           <div class="p-4 rounded" style="background-color: var(--rose);">
+    <div class="col-md-3 mb-4 text-center">
+        <a href="/IHM/poussettes.php?categorie=Poussettes" style="text-decoration: none; color: inherit;">
+        <div class="p-4 rounded" style="background-color: var(--rose);">
             <i class="fas fa-baby-carriage fa-3x mb-3"></i>
             <h5>Poussettes</h5>
               </div>
@@ -387,7 +379,7 @@ include_once('../Traitement/traitement_page_acceuil.php');
         <div class="row">
             <?php foreach($annonces as $annonce): ?>
             <div class="col-md-4 mb-4" id="poussette-card" style="cursor: pointer;">
-            <a href="../IHM/detailsAnnonce.php?id=<?= urlencode($annonce['id']) ?><?= isset($annonce['note_moyenne']) && $annonce['note_moyenne'] !== null ? '&note=' . urlencode($annonce['note_moyenne']) : '' ?>" style="text-decoration: none; color: inherit;">
+            <a href="/IHM/detailsAnnonce.php?id=<?= urlencode($annonce['id']) ?><?= isset($annonce['note_moyenne']) && $annonce['note_moyenne'] !== null ? '&note=' . urlencode($annonce['note_moyenne']) : '' ?>" style="text-decoration: none; color: inherit;">
                 <div class="card h-100">
                    <img src="../uploads/<?= htmlspecialchars($annonce['image_url'] ?? 'images.png') ?>"  class="card-img-top" alt="<?php echo htmlspecialchars($annonce['objet_nom']); ?>">
                     <div class="card-body">
@@ -408,7 +400,7 @@ include_once('../Traitement/traitement_page_acceuil.php');
                             <?php endif; ?>
                         </div>
                         <div>
-                        <a href="../IHM/formulaire_reservation.php?annonce_id=<?= htmlspecialchars($annonce['id']) ?>" class="btn w-100 reserve-btn">
+                        <a href="/IHM/formulaire_reservation.php?annonce_id=<?= htmlspecialchars($annonce['id']) ?>" class="btn w-100 reserve-btn">
             <i class="fas fa-calendar-check me-2"></i>Réserver
             </a>
                         </div>
@@ -419,7 +411,7 @@ include_once('../Traitement/traitement_page_acceuil.php');
             <?php endforeach; ?>
         </div>
         <div class="text-center mt-4">
-                <a href="../IHM/produits.php" class="btn btn-primary px-4"><i class="fas fa-list"></i> Voir toutes les annonces</a>
+                <a href="/IHM/produits.php" class="btn btn-primary px-4"><i class="fas fa-list"></i> Voir toutes les annonces</a>
             </div>
     </div>
 

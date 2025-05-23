@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../BD/connexion.php';
+require_once __DIR__ . '/../BD/connexion.php';
 
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
 
     $_SESSION['is_client'] = 1;
 
-    header("Location: ../IHM/index.php");
+    header("Location: /IHM/index.php");
     exit;
 } else {
     echo "Accès non autorisé.";

@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../Traitement/traitement_connexion.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -164,7 +167,7 @@
     <div class="form-container">
         <h2>Connexion 👶</h2>
         
-        <form action="../Traitement/traitement_connexion.php" method="POST">
+        <form action="/Traitement/traitement_connexion.php" method="POST">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" required placeholder="exemple@baby.com">

@@ -3,11 +3,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once '../BD/connexion.php';
-
+require_once __DIR__ . '/../BD/connexion.php';
 
 function getDernieresAnnoncesPremium() {
-
     global $conn;
   
     

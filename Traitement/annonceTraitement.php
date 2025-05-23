@@ -1,11 +1,7 @@
 <?php
-include '../BD/connexion.php';
-include 'objetTraitement.php';
+require_once __DIR__ . '/../BD/connexion.php';
 
-/**
- * Crée une nouvelle annonce
- */
-function creerAnnonce($objet_id, $proprietaire_id, $titre, $description, $prix_journalier, $date_debut, $date_fin, $adress, $premium = 0, $date_debut_premium = null, $duree_premium = null) {
+function createAnnonce($data) {
     global $conn;
     try {
         $stmt = $conn->prepare("
@@ -27,6 +23,8 @@ function creerAnnonce($objet_id, $proprietaire_id, $titre, $description, $prix_j
         error_log("Erreur lors de la création de l'annonce : " . $e->getMessage());
         return false;
     }
+    header('Location: /IHM/mes_annonces.php');
+    exit();
 }
 
 /**
@@ -156,4 +154,4 @@ function getNombreAnnoncesActives($proprietaire_id) {
     } catch (PDOException $e) {
         return 0;
     }
-} 
+}

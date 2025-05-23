@@ -122,16 +122,22 @@ if (!defined('OBJET_TRAITEMENT_INCLUDED')) {
     /**
      * Récupère toutes les images d'un objet
      */
+    <?php
+    require_once __DIR__ . '/../BD/connexion.php';
+    
     function getImagesObjet($objet_id) {
         global $conn;
-        try {
-            $stmt = $conn->prepare("SELECT * FROM image WHERE objet_id = ?");
-            $stmt->execute([$objet_id]);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("Erreur lors de la récupération des images : " . $e->getMessage());
-            return [];
+        $stmt = $conn->prepare("SELECT * FROM image WHERE objet_id = ?");
+        $stmt->execute([$objet_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    function uploadImage($file, $objet_id) {
+        $target_dir = __DIR__ . "/../uploads/";
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true);
         }
+        // ... reste du code d'upload ...
     }
 
     /**
@@ -227,4 +233,4 @@ if (!defined('OBJET_TRAITEMENT_INCLUDED')) {
         }
     }
 }
-?> 
+?>

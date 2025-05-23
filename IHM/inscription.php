@@ -3,7 +3,10 @@ session_start();
 if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
 }
+<?php
+require_once __DIR__ . '/../BD/connexion.php';
 ?>
+<!DOCTYPE html>
 <style>
     /* Styles communs conservés */
     * {
@@ -201,7 +204,7 @@ if (isset($_SESSION['user_id'])) {
         <h2>Inscription 👶</h2>
 
 
-        <form action="../Traitement/traitement_inscription.php" method="POST" enctype="multipart/form-data">
+        <form action="/Traitement/traitement_inscription.php" method="POST" enctype="multipart/form-data">
             <!-- Les champs existants avec le même style -->
             <input type="text" name="nom" placeholder="Nom" required>
             <input type="text" name="prenom" placeholder="Prénom" required>

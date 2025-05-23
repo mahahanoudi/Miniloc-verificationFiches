@@ -1,6 +1,7 @@
 <?php
 session_start();
-include '../BD/connexion.php';
+require_once __DIR__ . '/../BD/connexion.php';
+require_once __DIR__ . '/../Traitement/objetTraitement.php';
 
 // Vérifier si l'utilisateur est connecté et est un propriétaire
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'proprietaire') {
@@ -315,7 +316,7 @@ $images = $stmt->fetchAll();
         $("#annonceForm").on("submit", function(e) {
     e.preventDefault();
     $.ajax({
-        url: "../Traitement/traitement_annonce.php",
+        url: "/Traitement/traitement_annonce.php",
         method: "POST",
         dataType: 'json', // Spécifiez explicitement le type de réponse attendu
         data: $(this).serialize(),
