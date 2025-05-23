@@ -1,0 +1,213 @@
+:root {
+    --rose: #FFD1DC;
+    --bleu-ciel: #87CEEB;
+    --blanc: #FFFFFF;
+    --bleu-fonce: #5D8AA8;
+}
+
+
+
+/* Barre de recherche modernisée */
+.search-container {
+    background-color: var(--blanc);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.search-container .form-label {
+    font-weight: 600;
+    color: var(--bleu-fonce);
+    margin-bottom: 0.5rem;
+}
+
+.search-container .form-control,
+.search-container .form-select {
+    border: 2px solid var(--bleu-ciel);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    transition: all 0.3s;
+}
+
+.search-container .form-control:focus,
+.search-container .form-select:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 0.25rem rgba(255,209,220,0.25);
+}
+
+.search-btn {
+    background-color: var(--rose);
+    border: none;
+    color: #333;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.search-btn:hover {
+    background-color: var(--bleu-ciel);
+    transform: translateY(-2px);
+}
+
+/* Cartes d'annonces modernes */
+.annonce-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 1.5rem;
+    height: 100%;
+}
+
+.annonce-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.card-img-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.annonce-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+
+
+.category-badge {
+    background-color: var(--bleu-ciel);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.card-location {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.card-location i {
+    color: var(--bleu-ciel);
+    margin-right: 5px;
+}
+
+.card-price {
+    font-weight: 700;
+    color: var(--bleu-ciel);
+    font-size: 1.1rem;
+}
+
+.card-rating {
+    background-color: #FFF9C4;
+    color: #FFA000;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Section titre */
+.section-title {
+    color: var(--bleu-fonce);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative;
+    text-align: center;
+}
+
+.section-title:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--rose);
+    margin: 0.8rem auto 0;
+    border-radius: 2px;
+}
+
+/* Message aucun résultat */
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--blanc);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: var(--bleu-ciel);
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .search-container .col-md-3, 
+    .search-container .col-md-2 {
+        margin-bottom: 1rem;
+    }
+    
+    .annonce-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+.reset-btn {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #6c757d;
+    transition: all 0.3s;
+}
+
+.reset-btn:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.filter-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--bleu-ciel);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.filter-tag .close {
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+
+
+.footer {
+    background-color: var(--bleu-ciel);
+    color: white;
+}
