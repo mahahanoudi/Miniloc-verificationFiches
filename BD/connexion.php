@@ -1,23 +1,13 @@
 <?php
-$host = 'localhost';
-$dbname = 'miniloc2';
-$username = 'root';
-$password = '';
-$port = '3306';
+$host = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: 'miniloc';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: '';
 
 try {
-    $conn = new PDO( // Remplace $pdo par $conn
-        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
-        $username,
-        $password,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]
-    );
-} catch (PDOException $e) {
-    error_log("ERREUR CONNEXION: " . $e->getMessage());
-    die("Service temporairement indisponible");
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
 }
-
 ?>
